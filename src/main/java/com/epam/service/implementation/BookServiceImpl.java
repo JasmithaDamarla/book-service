@@ -25,10 +25,12 @@ public class BookServiceImpl implements BookService{
 	private ModelMapper modelMapper;
 
 	@Override
-	public BookResponseDTO getById(int id)  {
+	public BookResponseDTO getById(String id)  {
 		
+//		return Optional.ofNullable(bookRepository
+//						.findById(id))
 		return bookRepository
-						.findById(id)
+						.findById(Integer.valueOf(id))
 						.map(book -> {
 							log.info("retrieving book of id {}",id);
 							return BookResponseDTO
@@ -74,10 +76,10 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
-	public void deleteBookById(int id) {// throws BookException {
+	public void deleteBookById(String id) {// throws BookException {
 //		if (bookRepository.existsById(id)) {
 			log.info("book of id = {} getting deleted", id);
-			bookRepository.deleteById(id);
+			bookRepository.deleteById(Integer.valueOf(id));
 //		} else {
 //			throw new BookException("Not able to find the book to delete");
 //		}

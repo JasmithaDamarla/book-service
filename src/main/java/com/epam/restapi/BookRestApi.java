@@ -22,9 +22,10 @@ import com.epam.service.interfaces.BookService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
-@RestController
+
 @Slf4j
 @RequestMapping("books")
+@RestController
 public class BookRestApi {
 	@Autowired
 	private BookService bookService;
@@ -37,7 +38,7 @@ public class BookRestApi {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<BookResponseDTO> getBookById(@PathVariable int id) throws BookException{
+	public ResponseEntity<BookResponseDTO> getBookById(@PathVariable String id) throws BookException{
 		BookResponseDTO dto = bookService.getById(id);
 		if(dto.getName()==null)
 			throw new BookException("No book with bookId "+id);
@@ -52,14 +53,14 @@ public class BookRestApi {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Object> deleteBookById(@PathVariable int id) throws BookException{
+	public ResponseEntity<Object> deleteBookById(@PathVariable String id) throws BookException{
 		bookService.deleteBookById(id);
 		log.info("book deleted successfully!");
 		return new ResponseEntity<>("Deleted book Successfully", HttpStatus.OK);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<BookDTO> updateBookById(@PathVariable int id,@Valid @RequestBody BookDTO bookDto) throws BookException{
+	public ResponseEntity<BookDTO> updateBookById(@PathVariable String id,@Valid @RequestBody BookDTO bookDto) throws BookException{
 		BookDTO dto =  bookService.updateBook(bookDto);
 		log.info("book updated successfully! {}",dto);
 		return new ResponseEntity<>(dto, HttpStatus.OK);

@@ -7,9 +7,9 @@ import com.epam.dto.BookResponseDTO;
 import com.epam.exceptions.BookException;
 
 public interface BookService {
-	BookResponseDTO getById(int id) throws BookException;
+	BookResponseDTO getById(String id) throws BookException;
 	List<BookResponseDTO> getBooks();
 	BookDTO addBook(BookDTO dto) throws BookException;
 	BookDTO updateBook(BookDTO dto) throws BookException;
-	void deleteBookById(int id) throws BookException;
+	void deleteBookById(String id) throws BookException;
 }

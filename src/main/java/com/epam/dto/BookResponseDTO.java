@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 @JsonInclude(value = Include.NON_NULL)
 public class BookResponseDTO {
-	private Integer bookId;
+	private String bookId;
 	@Size(min = 3, max = 40, message = "name of book must be of size min of 3 and max of 40")
 	private String name;
 	@Size(min = 3, max = 30, message = "publisher name of book must be of size min of 3 and max of 30")
